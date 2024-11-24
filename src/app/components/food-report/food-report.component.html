@@ -1,0 +1,43 @@
+<p-toast></p-toast>
+
+<div class="p-d-flex p-jc-center p-ai-center">
+    <p-card header="Employee Details" class="p-shadow-4" [ngStyle]="{'width': '50%'}">
+        <div class="p-d-flex p-flex-column">
+            <p><strong>Name:</strong> {{ employeeDetails?.f_name }} {{ employeeDetails?.l_name }}</p>
+            <p><strong>Employee ID:</strong> {{ employeeDetails?.emp_id }}</p>
+            <p><strong>Email:</strong> {{ employeeDetails?.email }}</p>
+            <p><strong>Phone:</strong> {{ employeeDetails?.phone }}</p>
+        </div>
+    </p-card>
+</div>
+<p-card header="Food Order Status" class="p-shadow-4" [ngStyle]="{'margin-top': '20px'}">
+    <p-table [value]="foodOrders" class="p-datatable-striped" [scrollable]="true" scrollHeight="400px">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Date</th>
+                <th>Breakfast</th>
+                <th>Lunch</th>
+                <th>Dinner</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order>
+            <tr>
+                <td>{{ order.date }}</td>
+                <td>{{ order.opt_ins?.breakfast || 'N/A' }}</td>
+                <td>{{ order.opt_ins?.lunch || 'N/A' }}</td>
+                <td>{{ order.opt_ins?.dinner || 'N/A' }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+
+<div class="p-d-flex p-jc-center p-ai-center" [ngStyle]="{'margin-top': '20px'}">
+    <p-button label="Calculate Fine" size="small" [raised]="true" icon="pi pi-check" (click)="calculateFine()"
+        class="p-button-success"></p-button>
+</div>
+
+<p-card header="Total Fine" class="p-shadow-4" [ngStyle]="{'margin-top': '20px', 'width': '30%'}">
+    <div class="p-d-flex p-flex-column">
+        <p><strong>Total Fine:</strong> ₹{{ totalFine }}</p>
+    </div>
+</p-card>
